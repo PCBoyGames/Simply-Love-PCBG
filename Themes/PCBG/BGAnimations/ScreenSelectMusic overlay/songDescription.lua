@@ -186,40 +186,8 @@ local t = Def.ActorFrame{
 					end
 				end
 			}
-		},
-
-		-- long/marathon version bubble graphic and text
-		Def.ActorFrame{
-			OnCommand=function(self)
-				self:x( IsUsingWideScreen() and 102 or 97 )
-			end,
-			SetCommand=function(self)
-				local song = GAMESTATE:GetCurrentSong()
-				self:visible( song and (song:IsLong() or song:IsMarathon()) or false )
-			end,
-
-			LoadActor("bubble")..{
-				InitCommand=function(self) self:diffuse(GetCurrentColor()):zoom(0.455):y(41) end
-			},
-
-			LoadFont("_miso")..{
-				InitCommand=cmd(diffuse, Color.Black; zoom,0.8; y, 46),
-				SetCommand=function(self)
-					local song = GAMESTATE:GetCurrentSong()
-					local text = ""
-
-					if song then
-						if song:IsMarathon() then
-							text = THEME:GetString("SongDescription", "IsMarathon")
-						elseif song:IsLong() then
-							text = THEME:GetString("SongDescription", "IsLong")
-						end
-					end
-
-					self:settext(text)
-				end
-			}
 		}
+
 	}
 }
 

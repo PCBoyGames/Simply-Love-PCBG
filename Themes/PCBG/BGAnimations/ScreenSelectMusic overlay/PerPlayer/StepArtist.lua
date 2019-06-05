@@ -32,12 +32,12 @@ return Def.ActorFrame{
 		if player == PLAYER_1 then
 
 			self:y(_screen.cy + 51)
-			self:x( _screen.cx - (IsUsingWideScreen() and 356 or 346))
+			self:x( _screen.cx - (IsUsingWideScreen() and 283.5 or 346))
 
 		elseif player == PLAYER_2 then
 
-			self:y(_screen.cy + 104)
-			self:x( _screen.cx - 210)
+			self:y(_screen.cy + 106)
+			self:x( _screen.cx - (IsUsingWideScreen() and 283.5 or 346))
 		end
 
 		if GAMESTATE:IsHumanPlayer(player) then
@@ -48,7 +48,7 @@ return Def.ActorFrame{
 	-- colored background quad
 	Def.Quad{
 		Name="BackgroundQuad",
-		InitCommand=cmd(zoomto, 176, (_screen.h/28)+1; x, 113; diffuse,color("#FFFFFF") ),
+		InitCommand=cmd(zoomto, 321, (_screen.h/28)+1; x, 113; diffuse,color("#FFFFFF") ),
 		StepsHaveChangedCommand=function(self)
 			local StepsOrTrail = GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentTrail(player) or GAMESTATE:GetCurrentSteps(player)
 
@@ -62,7 +62,7 @@ return Def.ActorFrame{
 	},
 	Def.Quad{
 		Name="BackgroundQuad",
-		InitCommand=cmd(zoomto, 175, _screen.h/28; x, 113; diffuse,color("#000000") ),
+		InitCommand=cmd(zoomto, 320, _screen.h/28; x, 113; diffuse,color("#000000") ),
 		StepsHaveChangedCommand=function(self)
 			local StepsOrTrail = GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentTrail(player) or GAMESTATE:GetCurrentSteps(player)
 
@@ -78,13 +78,13 @@ return Def.ActorFrame{
 	--STEPS label
 	Def.BitmapText{
 		Font="_miso",
-		OnCommand=cmd(diffuse, color("1,1,1,1"); horizalign, left; x, 30; settext, Screen.String("STEPS"))
+		OnCommand=cmd(diffuse, color("1,1,1,1"); horizalign, left; x, -45; settext, Screen.String("STEPS"))
 	},
 
 	--stepartist text
 	Def.BitmapText{
 		Font="_miso",
-		InitCommand=cmd(diffuse,color("#FFFFFF"); horizalign, left; x, 75; maxwidth, 115),
+		InitCommand=cmd(diffuse,color("#FFFFFF"); horizalign, left; x, 0; maxwidth, 270),
 		StepsHaveChangedCommand=function(self)
 
 			local SongOrCourse = GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentCourse() or GAMESTATE:GetCurrentSong()
