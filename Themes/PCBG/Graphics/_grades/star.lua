@@ -44,21 +44,21 @@ t[#t+1] = LoadActor("graphics/star.png")..{
 				pss:GetTapNoteScores('TapNoteScore_W4') == 0 and
 				pss:GetTapNoteScores('TapNoteScore_W3') == 0 and
 				pss:GetTapNoteScores('TapNoteScore_W2') == 1 then
-			self:sleep(9)
+			self:sleep(0)
 			self:queuecommand('Appear')
 		end
 	end,
 	AppearCommand=function(self)
 		self:visible(true)
 		self:MaskSource(true)
-		self:sleep(5)
+		self:sleep(0)
 		self:queuecommand('Animate')
 	end,
 	AnimateCommand=function(self)
 		self:vibrate()
 		local m = self:GetZoomedWidth() / 20
 		self:effectmagnitude(m, m, m)
-		self:sleep(5)
+		self:sleep(0)
 		self:queuecommand('Animate2')
 	end,
 	Animate2Command=function(self)
@@ -87,7 +87,7 @@ t[#t+1] = LoadActor("graphics/affluent.png")..{
 		self:linear(3)
 		self:diffusealpha(0.7)
 		self:ztestmode('WriteOnFail')
-		self:sleep(2)
+		self:sleep(0)
 		self.rotatespeed = 0.6 + 0.4 * math.random()
 		self:queuecommand('AnimateLoop')
 	end,
@@ -123,7 +123,7 @@ t[#t+1] = LoadActor("graphics/goldstar (stretch).png")..{
 			-- Lol; one ex
 			self:visible(true)
 			self:diffuse(Color.Black)
-			self:sleep(2)
+			self:sleep(0)
 			self:queuecommand('Animate')
 		else
 			-- Nothing worth taunting over

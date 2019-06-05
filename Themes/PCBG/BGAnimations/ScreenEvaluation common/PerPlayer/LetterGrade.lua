@@ -32,6 +32,15 @@ if SL.Global.GameMode ~= "StomperZ" then
 			end
 		}
 	end
+
+	if grade == "Grade_Tier99" then
+		t[#t+1] = LoadActor("sounds/q.ogg")..{
+			InitCommand=cmd(xy, 70, _screen.cy-134),
+			OnCommand=function(self)
+				self:play("sounds/q.ogg")
+			end
+		}
+	end
 	
 	if grade == "Grade_Tier01" then
 		t[#t+1] = LoadActor("sounds/dingfour.ogg")..{
