@@ -6,6 +6,7 @@ local p = PlayerNumber:Reverse()[player]
 local GlobalOffsetSeconds = PREFSMAN:GetPreference("GlobalOffsetSeconds")
 
 local RowIndex = 1
+local colorindex = SL.Global.ActiveColorIndex
 
 return Def.Sprite{
 	Texture=THEME:GetPathB("ScreenSelectMusic", "overlay/PerPlayer/arrow.png"),

@@ -5,12 +5,16 @@ local t = Def.ActorFrame{
 	OnCommand=function(self)
 		if IsUsingWideScreen() then
 			self:zoom(0.7655)
-			self:xy(_screen.cx - 170, 112)
+			self:xy(_screen.cx - 170, 108)
 		else
 			self:zoom(0.75)
-			self:xy(_screen.cx - 166, 112)
+			self:xy(_screen.cx - 166, 108)
 		end
 	end,
+	
+	Def.Quad{
+		OnCommand=cmd(diffuse,Color.White;setsize,420,166)
+	},
 
 	Def.ActorFrame{
 		CurrentSongChangedMessageCommand=function(self) self:playcommand("Set") end,

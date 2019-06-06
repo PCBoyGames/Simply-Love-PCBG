@@ -141,8 +141,11 @@ for RowNumber=1,GridRows do
 			self:zoom(0.3)
 		end,
 		SetCommand=function(self, params)
-			-- diffuse and set each chart's difficulty meter
-			self:diffuse(Color.White)
+			-- diffuse and set each chart's difficulty meter with the same as the blocks
+			local meter = clamp( params.Meter, 1, GridColumns )
+			local colorred=meter/30
+			local colorblue=1-colorred
+			self:diffuse(colorred,0,colorblue,1)
 			self:settext(params.Meter)
 		end,
 		UnsetCommand=cmd(settext, ""; diffuse,color("#182025")),

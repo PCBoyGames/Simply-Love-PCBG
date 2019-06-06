@@ -10,6 +10,8 @@ local min_vy = 1
 local max_vy = 10
 -- try to keep it SFW
 local path_to_texture = THEME:GetPathB("", "_shared background normal/" .. ThemePrefs.Get("VisualTheme") .. ".png")
+local colorindex = SL.Global.ActiveColorIndex
+
 
 -- -----------------------------------
 local verts = {}
@@ -75,9 +77,17 @@ for i=1, num_particles do
 	table.insert( verts, {{x-size, y, 0}, {1,1,1,alpha}, {0,1} } )
 end
 
--- background Quad with a blue-to-blue gradient
-af[#af+1] = Def.Quad{
-	InitCommand=function(self) self:FullScreen():Center():diffusetopedge(color("#030f27")):diffusebottomedge(color("#061f4f")) end
+-- background Quad with a custom color
+af[#af+1] = Def.Quad{	
+	InitCommand=function(self) 
+		self:FullScreen():Center():diffuse(GetHexColor(colorindex+1))
+	end
+}
+
+af[#af+1] = Def.Quad{	
+	InitCommand=function(self) 
+		self:FullScreen():Center():diffuse(Color.Black):diffusealpha(0.75)
+	end
 }
 
 af[#af+1] = Def.ActorMultiVertex{

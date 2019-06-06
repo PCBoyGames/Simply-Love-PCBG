@@ -24,19 +24,19 @@ return Def.ActorFrame{
 
 	-- depending on the value of pn, this will either become
 	-- an AppearP1Command or an AppearP2Command when the screen initializes
-	["Appear"..pn.."Command"]=function(self) self:visible(true):ease(0.5, 275):addy(scale(p,0,1,-1,1) * 30) end,
+	["Appear"..pn.."Command"]=function(self) self:visible(true) end,
 
 	InitCommand=function(self)
 		self:visible( false ):halign( p )
 
 		if player == PLAYER_1 then
 
-			self:y(_screen.cy + 50.57)
+			self:y(_screen.cy + 21)
 			self:x( _screen.cx - (IsUsingWideScreen() and 283.5 or 346))
 
 		elseif player == PLAYER_2 then
 
-			self:y(_screen.cy + 106)
+			self:y(_screen.cy + 136)
 			self:x( _screen.cx - (IsUsingWideScreen() and 282.5 or 346))
 		end
 

@@ -266,7 +266,7 @@ end
 pd[#pd+1] = Def.BitmapText{
 	Font="_wendy small",
 	Name="DifficultyMeter",
-	InitCommand=cmd(horizalign, right; diffuse, Color.White; xy, _screen.w/4 - 10, _screen.h/2 - 65; queuecommand, "Set"),
+	InitCommand=cmd(horizalign, right; xy, _screen.w/4 - 10, _screen.h/2 - 65; queuecommand, "Set"),
 	SetCommand=function(self)
 		local SongOrCourse = (GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentCourse()) or GAMESTATE:GetCurrentSong()
 		if not SongOrCourse then
@@ -274,6 +274,9 @@ pd[#pd+1] = Def.BitmapText{
 		else
 			local StepsOrTrail = GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentTrail(player) or GAMESTATE:GetCurrentSteps(player)
 			local meter = StepsOrTrail and StepsOrTrail:GetMeter()
+			local colorred=meter/30
+			local colorblue=1-colorred
+			self:diffuse(colorred,0,colorblue,1)
 			self:settext( meter and meter or  "?" )
 		end
 	end
