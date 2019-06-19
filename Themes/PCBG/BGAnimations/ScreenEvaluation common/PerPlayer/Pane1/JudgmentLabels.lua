@@ -83,6 +83,9 @@ for index, window in ipairs(TapNoteScores.Types) do
 
 			elseif SL.Global.GameMode == "ECFA" then
 				self:diffuse( SL.JudgmentColors.ECFA[index] )
+
+			else
+				self:diffuse( SL.JudgmentColors.Competitive[index] )
 			end
 
 

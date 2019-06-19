@@ -27,7 +27,7 @@ end
 af[#af+1] = Def.BitmapText{
 	Font="_miso",
 	Text=ScreenString("ThemeDesign"),
-	InitCommand=cmd(diffuse,GetHexColor(slc); diffusealpha,0; Center),
+	InitCommand=cmd(diffuse,GetHexColor(slc+1); diffusealpha,0; Center),
 	OnCommand=cmd(sleep,3;linear,0.25;diffusealpha,1),
 	OffCommand=cmd(linear, 0.25; diffusealpha,0),
 }

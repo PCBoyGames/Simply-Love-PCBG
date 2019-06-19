@@ -1,4 +1,5 @@
 local index = Var("GameCommand"):GetIndex()
+local colorindex = SL.Global.ActiveColorIndex
 
 local t = Def.ActorFrame{}
 
@@ -10,7 +11,7 @@ t[#t+1] = LoadFont("_wendy small")..{
 	OnCommand=cmd(diffusealpha,0; sleep,index * 0.075; linear,0.2; diffusealpha,1),
 	OffCommand=cmd(sleep,index * 0.075; linear,0.18; diffusealpha, 0),
 
-	GainFocusCommand=cmd(stoptweening; linear,0.1; zoom,1; diffuse, color("#4488FF") ; glow,{1,1,1,0.5}; decelerate,0.05; glow,{1,1,1,0.0}; shadowlength,0.5),
+	GainFocusCommand=cmd(stoptweening; linear,0.1; zoom,1; diffuse, GetHexColor(colorindex+1); glow,{1,1,1,1}; decelerate,0.05; glow,{1,1,1,1.0}; shadowlength,0.5),
 	LoseFocusCommand=cmd(stoptweening; linear,0.1; zoom,0; diffuse, ThemePrefs.Get("RainbowMode") and {1,1,1,1} or color("#888888"); glow,{1,1,1,0}; shadowlength,0)
 }
 

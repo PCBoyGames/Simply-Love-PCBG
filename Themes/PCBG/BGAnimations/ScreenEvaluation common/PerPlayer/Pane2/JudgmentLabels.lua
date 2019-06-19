@@ -42,6 +42,10 @@ for index, label in ipairs(TNSNames) do
 			-- if ECFA, color the JudgmentLabel
 			elseif mode == "ECFA" then
 				self:diffuse( SL.JudgmentColors.ECFA[index] )
+
+			else
+				self:diffuse( SL.JudgmentColors.Competitive[index] )
+
 			end
 
 

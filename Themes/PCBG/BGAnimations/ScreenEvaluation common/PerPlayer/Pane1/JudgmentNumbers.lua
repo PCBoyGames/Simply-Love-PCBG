@@ -45,6 +45,9 @@ for index, window in ipairs(TapNoteScores.Types) do
 			-- if ECFA, color the JudgmentNumbers
 			elseif SL.Global.GameMode == "ECFA" then
 				self:diffuse( SL.JudgmentColors.ECFA[index] )
+
+			else
+				self:diffuse( SL.JudgmentColors.Competitive[index] )
 			end
 
 			-- check for Decents/Way Offs
