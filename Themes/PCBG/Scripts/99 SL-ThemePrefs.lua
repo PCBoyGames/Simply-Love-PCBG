@@ -77,11 +77,12 @@ local SL_CustomPrefs =
 			THEME:GetString("ThemePrefs", "Ducks"),
 			THEME:GetString("ThemePrefs", "Spooky"),
 			THEME:GetString("ThemePrefs", "Gay"),
+			THEME:GetString("ThemePrefs", "Particles"),
 		},
-		Values  = { "Hearts", "Arrows", "Bears", "Ducks", "Spooky", "Gay" },
+		Values  = { "Hearts", "Arrows", "Bears", "Ducks", "Spooky", "Gay", "Particles" },
 	},
 	RainbowMode = {
-		Default = false,
+		Default = false,	
 		Choices = {
 			THEME:GetString("ThemePrefs", "On"),
 			THEME:GetString("ThemePrefs", "Off")
@@ -93,10 +94,10 @@ local SL_CustomPrefs =
 	-- the StepMania application is started.
 	SimplyLoveColor =
 	{
-		-- a nice pinkish-purple, by default
+		-- a nice color by default
 		Default = 3,
-		Choices = { 1,2,3,4,5,6,7,8,9,10,11,12 },
-		Values = { 1,2,3,4,5,6,7,8,9,10,11,12 }
+		Choices = { 1,2,3,4,5,6},
+		Values = { 1,2,3,4,5,6}
 	},
 
 	-- - - - - - - - - - - - - - - - - - - -

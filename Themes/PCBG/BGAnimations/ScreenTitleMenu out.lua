@@ -1,5 +1,5 @@
-local dc1 = DifficultyIndexColor(1)
-local dc2 = DifficultyIndexColor(2)
+local dc1 = DifficultyIndexColor(3)
+local dc2 = DifficultyIndexColor(3)
 local image = ThemePrefs.Get("VisualTheme")
 
 local t = Def.ActorFrame{

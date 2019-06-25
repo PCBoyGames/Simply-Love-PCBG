@@ -8,13 +8,14 @@ local GlobalOffsetSeconds = PREFSMAN:GetPreference("GlobalOffsetSeconds")
 local RowIndex = 1
 local colorindex = SL.Global.ActiveColorIndex
 
-return Def.Sprite{
+return
+	Def.Sprite{
 	Texture=THEME:GetPathB("ScreenSelectMusic", "overlay/PerPlayer/arrow.png"),
 	Name="Cursor"..pn,
 	InitCommand=function(self)
 		self:visible( false ):halign( p )
 
-		self:zoom(0.575)
+		self:zoom(0.575):diffuse(Color.White)
 		self:bounce():effectclock("beat")
 		
 		if player == PLAYER_1 then
@@ -105,7 +106,7 @@ return Def.Sprite{
 			local sdl = self:GetParent():GetParent():GetChild("StepsDisplayList")
 			if sdl then
 				local grid = sdl:GetChild("Grid")
-				self:y(sdl:GetY() + grid:GetY() + grid:GetChild("Blocks_"..RowIndex):GetY() + 1 )
+				self:y(sdl:GetY() + grid:GetY() + grid:GetChild("Blocks_"..RowIndex):GetY() + 1 ):diffuse(GetHexColor(colorindex+1)):linear(0.1):diffuse(Color.White)
 			end
 		end
 	end

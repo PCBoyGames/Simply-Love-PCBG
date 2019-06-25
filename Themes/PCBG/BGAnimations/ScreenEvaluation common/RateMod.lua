@@ -7,7 +7,7 @@ return Def.ActorFrame{
 
 	--quad behind the MusicRate text
 	Def.Quad{
-		InitCommand=function(self) self:diffuse( color("#1E282FCC") ):zoomto(418,20) end,
+		InitCommand=function(self) self:diffuse( color("#000000CC") ):zoomto(418,20) end,
 	},
 
 	--the MusicRate text

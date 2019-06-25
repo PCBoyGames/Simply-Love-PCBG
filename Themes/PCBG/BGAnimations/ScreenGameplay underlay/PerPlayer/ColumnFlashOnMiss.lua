@@ -30,7 +30,11 @@ if mods.ColumnFlashOnMiss then
 				for i,col in pairs(params.Notes or params.Holds) do
 					local tns = ToEnumShortString(params.TapNoteScore or params.HoldNoteScore)
 					if tns == "Miss" or tns == "MissedHold" then
-						columns[i]:playcommand("Flash")
+						columns[i]:playcommand("MissFlash")	
+					elseif tns == "W5" then
+						columns[i]:playcommand("BadFlash")
+					elseif tns == "W4" then
+						columns[i]:playcommand("GoodFlash")
 					end
 				end
 			end
@@ -38,23 +42,37 @@ if mods.ColumnFlashOnMiss then
 	}
 
 	for ColumnIndex=1,NumColumns do
-		af[#af+1] = Def.Quad{
-			InitCommand=function(self)
-				columns[ColumnIndex] = self
+		af[#af+1] = 
+		Def.ActorFrame{
+			Def.Quad{
+				InitCommand=function(self)
+					columns[ColumnIndex] = self
 
-				self:diffuse(0,0,0,0)
-					:x((ColumnIndex - (NumColumns/2 + 0.5)) * (width/NumColumns))
-					:vertalign(top)
-					:setsize(width/NumColumns, _screen.h - y_offset)
-					:fadebottom(0.333)
-					:fadetop(0.333)
-	        end,
-			FlashCommand=function(self)
-				self:diffuse(0.5,0,0,0.66)
-					:linear(0.5):diffuse(0,0,0,0):vibrate():effectmagnitude(10,10,10)
-			end
+					self:diffuse(0,0,0,0)
+						:x((ColumnIndex - (NumColumns/2 + 0.5)) * (width/NumColumns))
+						:vertalign(top)
+						:setsize(width/NumColumns, _screen.h - y_offset)
+						:fadebottom(1.5)
+						:fadetop(1.5)
+						:y(-150)
+		        end,
+				MissFlashCommand=function(self)
+					self:vibrate():effectmagnitude(10,0,0):diffuse(201/256,1/256,1/256,0.75)
+						:linear(0.5):diffusealpha(0)
+				end,
+				BadFlashCommand=function(self)
+					self:vibrate():effectmagnitude(10,0,0):diffuse(184/256,4/256,124/256,0.75)
+						:linear(0.5):diffusealpha(0)
+				end,
+				GoodFlashCommand=function(self)
+					self:vibrate():effectmagnitude(10,0,0):diffuse(69/256,8/256,190/256,0.75)
+						:linear(0.5):diffusealpha(0)
+				end
+
+			}
 		}
 	end
+
 
 	return af
 

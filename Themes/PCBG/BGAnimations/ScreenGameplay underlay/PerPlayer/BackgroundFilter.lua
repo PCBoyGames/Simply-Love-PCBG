@@ -15,7 +15,8 @@ local filter = Def.ActorFrame{
 	OffCommand=function(self) self:queuecommand("ComboFlash") end,
 }
 
-filter[#filter+1] = Def.Quad{
+filter[#filter+1] = Def.ActorFrame{
+	Def.Quad{
 	InitCommand=function(self)
 		self:diffuse(Color.Black)
 			:diffusealpha( FilterAlpha[mods.BackgroundFilter] or 0 )
@@ -40,6 +41,33 @@ filter[#filter+1] = Def.Quad{
 				:accelerate(0.15):diffusealpha(0)
 		end
 	end
+},
+Def.BitmapText{
+	Font="_wendy small",
+	Text="F    C",
+	InitCommand=function(self)
+		self:diffuse(Color.Black)
+			:diffusealpha(0)
+			:zoom(4.5)
+	end,
+	ComboFlashCommand=function(self)
+		local pss = STATSMAN:GetCurStageStats():GetPlayerStageStats(player)
+		local FlashColor = nil
+
+		local WorstAcceptableFC = { Casual=3, Competitive=3, ECFA=4, StomperZ=4 }
+
+		for i=1,WorstAcceptableFC[SL.Global.GameMode] do
+			if pss:FullComboOfScore("TapNoteScore_W"..i) then
+				FlashColor = SL.JudgmentColors[SL.Global.GameMode][i]
+				break
+			end
+		end
+
+		if (FlashColor ~= nil) then
+			self:diffuse( Color.White ):diffusealpha(0):linear(0.25):diffusealpha(1):y(-10):linear(0.5):diffusealpha(0):y(-30)
+		end
+	end
+}
 }
 
 --Let's see if we need to let  the player know that they are nice.
