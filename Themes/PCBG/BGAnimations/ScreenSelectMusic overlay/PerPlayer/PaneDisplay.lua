@@ -273,7 +273,7 @@ pd[#pd+1] = Def.BitmapText{
 			self:settext("")
 		else
 			local StepsOrTrail = GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentTrail(player) or GAMESTATE:GetCurrentSteps(player)
-			local meter = StepsOrTrail and StepsOrTrail:GetMeter()
+			local meter = StepsOrTrail and StepsOrTrail:GetMeter() or 1
 			local colorred=meter/30
 			local colorblue=1-colorred
 			self:diffuse(colorred,0,colorblue,1)
