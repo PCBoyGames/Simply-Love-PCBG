@@ -35,6 +35,8 @@ if mods.ColumnFlashOnMiss then
 						columns[i]:playcommand("BadFlash")
 					elseif tns == "W4" then
 						columns[i]:playcommand("GoodFlash")
+					elseif tns =="HitMine" then
+						columns[i]:playcommand("OhFuckOff")
 					end
 				end
 			end
@@ -67,7 +69,12 @@ if mods.ColumnFlashOnMiss then
 				GoodFlashCommand=function(self)
 					self:vibrate():effectmagnitude(10,0,0):diffuse(69/256,8/256,190/256,0.75)
 						:linear(0.5):diffusealpha(0)
+				end,
+				OhFuckOffCommand=function(self)
+					self:vibrate():effectmagnitude(100,100,100):diffuse(1,0,0,1)
+						:linear(0.5):diffusealpha(0)
 				end
+
 
 			}
 		}

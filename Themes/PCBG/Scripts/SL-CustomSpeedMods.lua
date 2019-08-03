@@ -67,17 +67,17 @@ function GetDisplayBPMs()
 			--if a single bpm suffices
 			if bpm[1] == bpm[2] then
 				if MusicRate == 1 then
-					text = round(bpm[1])
+					text = round(bpm[1], 3)
 				else
-					text = round(bpm[1] * MusicRate, 1)
+					text = round(bpm[1] * MusicRate, 3)
 				end
 
 			-- if we have a range of bpms
 			else
 				if MusicRate == 1 then
-					text = round(bpm[1]) .. " - " .. round(bpm[2])
+					text = round(bpm[1], 3) .. " - " .. round(bpm[2], 3)
 				else
-					text = round(bpm[1] * MusicRate, 1) .. " - " .. round(bpm[2] * MusicRate, 1)
+					text = round(bpm[1] * MusicRate, 3) .. " - " .. round(bpm[2] * MusicRate, 3)
 				end
 			end
 		end

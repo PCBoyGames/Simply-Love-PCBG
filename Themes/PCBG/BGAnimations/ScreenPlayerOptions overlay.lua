@@ -25,11 +25,11 @@ local function GetSpeedModHelperText(pn)
 
 		--if a single bpm suffices
 		if bpm[1] == bpm[2] then
-			display = string.format("%.2f", speed) .. "x (" .. round(speed * bpm[1] * musicrate) .. ")"
+			display = string.format("%.2f", speed) .. "x (" .. round(speed * bpm[1] * musicrate, 3) .. ")"
 
 		-- if we have a range of bpms
 		else
-			display = string.format("%.2f", speed) .. "x (" .. round(speed * bpm[1] * musicrate) .. " - " .. round(speed * bpm[2] * musicrate) .. ")"
+			display = string.format("%.2f", speed) .. "x (" .. round(speed * bpm[1] * musicrate, 3) .. " - " .. round(speed * bpm[2] * musicrate, 3) .. ")"
 		end
 
 	-- elseif using a CMod or an MMod
@@ -41,15 +41,15 @@ local function GetSpeedModHelperText(pn)
 end
 
 local increments = {
-	x = 0.05,
-	C = 5,
-	M = 5
+	x = 0.01,
+	C = 1,
+	M = 1
 }
 
 local bounds = {
-	x = { upper=20, lower=0.05 },
-	C = { upper=2000, lower=5 },
-	M = { upper=2000, lower=5 }
+	x = { upper=2000, lower=0 },
+	C = { upper=2000, lower=0 },
+	M = { upper=2000, lower=0 }
 }
 
 --- this manipulates the SpeedMod numbers set in the global SL table

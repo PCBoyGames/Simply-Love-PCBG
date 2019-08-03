@@ -106,7 +106,7 @@ return
 			local sdl = self:GetParent():GetParent():GetChild("StepsDisplayList")
 			if sdl then
 				local grid = sdl:GetChild("Grid")
-				self:y(sdl:GetY() + grid:GetY() + grid:GetChild("Blocks_"..RowIndex):GetY() + 1 ):diffuse(GetHexColor(colorindex+1)):linear(0.1):diffuse(Color.White)
+				self:y(sdl:GetY() + grid:GetY() + grid:GetChild("Blocks_"..RowIndex):GetY() + 1 ):diffuse(GetHexColor(colorindex+1)):linear(0.02):diffuse(Color.White)
 			end
 		end
 	end
