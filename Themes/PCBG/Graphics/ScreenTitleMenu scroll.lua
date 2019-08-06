@@ -8,7 +8,7 @@ t[#t+1] = LoadFont("_wendy small")..{
 	Name="Choice"..index,
 	Text=THEME:GetString( 'ScreenTitleMenu', Var("GameCommand"):GetText() ),
 
-	OnCommand=cmd(diffusealpha,0; sleep,index * 0.075; linear,0.2; diffusealpha,1),
+	OnCommand=cmd(diffusealpha,0;sleep,0.5;accelerate,0.3;diffusealpha,1);
 	OffCommand=cmd(sleep,index * 0.075; linear,0.18; diffusealpha, 0),
 
 	GainFocusCommand=cmd(stoptweening; linear,0.1; zoom,1; diffuse, GetHexColor(colorindex+1); glow,{1,1,1,1}; decelerate,0.05; glow,{1,1,1,1.0}; shadowlength,0.5),
