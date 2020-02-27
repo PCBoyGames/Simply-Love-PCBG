@@ -6,7 +6,7 @@ local StepsToDisplay, SongOrCourse, StepsOrTrails
 
 local t = Def.ActorFrame{
 	Name="StepsDisplayList",
-	InitCommand=cmd(vertalign, top; draworder, 1; xy, _screen.cx-170, _screen.cy + 78),
+	InitCommand=cmd(vertalign, top; draworder, 1; xy, _screen.cx-170, _screen.cy + 86),
 	-- - - - - - - - - - - - - -
 
 	OnCommand=cmd(queuecommand, "RedrawStepsDisplay"),

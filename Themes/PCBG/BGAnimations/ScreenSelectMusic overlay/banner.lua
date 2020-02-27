@@ -5,10 +5,10 @@ local t = Def.ActorFrame{
 	OnCommand=function(self)
 		if IsUsingWideScreen() then
 			self:zoom(0.7655)
-			self:xy(_screen.cx - 170, 108)
+			self:xy(_screen.cx - 170, 100)
 		else
 			self:zoom(0.75)
-			self:xy(_screen.cx - 166, 108)
+			self:xy(_screen.cx - 166, 100)
 		end
 	end,
 	

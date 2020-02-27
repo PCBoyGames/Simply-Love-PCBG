@@ -1,7 +1,7 @@
 local t = Def.ActorFrame{
 
 	OnCommand=function(self)
-		self:xy(_screen.cx - (IsUsingWideScreen() and 170 or 165), _screen.cy - 28)
+		self:xy(_screen.cx - (IsUsingWideScreen() and 170 or 165), _screen.cy - 29)
 	end,
 
 	-- ----------------------------------------
@@ -18,7 +18,7 @@ local t = Def.ActorFrame{
 		Def.Quad{
 			InitCommand=function(self)
 				self:diffuse(color("#FFFFFF"))
-					:zoomto( IsUsingWideScreen() and 321 or 310, 69 )
+					:zoomto( IsUsingWideScreen() and 321 or 310, 89 )
 
 				if ThemePrefs.Get("RainbowMode") then
 					self:diffusealpha(0.75)
@@ -28,7 +28,7 @@ local t = Def.ActorFrame{
 		Def.Quad{
 			InitCommand=function(self)
 				self:diffuse(color("#000000"))
-					:zoomto( IsUsingWideScreen() and 320 or 310, 68 )
+					:zoomto( IsUsingWideScreen() and 320 or 310, 88 )
 
 				if ThemePrefs.Get("RainbowMode") then
 					self:diffusealpha(0.75)
@@ -45,7 +45,7 @@ local t = Def.ActorFrame{
 				InitCommand=function(self)
 					local text = GAMESTATE:IsCourseMode() and "NumSongs" or "Artist"
 					self:settext( THEME:GetString("SongDescription", text) )
-						:horizalign(right):y(0)
+						:horizalign(right):y(8)
 						:maxwidth(44)
 				end,
 				OnCommand=function(self) self:diffuse(0.5,0.5,0.5,1) end
@@ -53,7 +53,7 @@ local t = Def.ActorFrame{
 
 			-- Song Artist
 			LoadFont("_miso")..{
-				InitCommand=cmd(horizalign,left; xy, 5,0; maxwidth,WideScale(225,260) ),
+				InitCommand=cmd(horizalign,left; xy, 5,8; maxwidth,WideScale(225,260) ),
 				SetCommand=function(self)
 					if GAMESTATE:IsCourseMode() then
 						local course = GAMESTATE:GetCurrentCourse()
@@ -77,15 +77,47 @@ local t = Def.ActorFrame{
 				InitCommand=function(self)
 					local text = GAMESTATE:IsCourseMode() and "CourseName" or "SongName"
 					self:settext( THEME:GetString("SongDescription", text) )
-						:horizalign(right):y(-20)
+						:horizalign(right):y(-12)
+						:maxwidth(44)
+				end,
+				OnCommand=function(self) self:diffuse(0.5,0.5,0.5,1) end
+			},
+
+			LoadFont("_miso")..{
+				InitCommand=function(self)
+					local text = GAMESTATE:IsCourseMode() and "CourseName" or "GroupName"
+					self:settext( THEME:GetString("SongDescription", text) )
+						:horizalign(right):y(-32)
 						:maxwidth(44)
 				end,
 				OnCommand=function(self) self:diffuse(0.5,0.5,0.5,1) end
 			},
 
 
+
 			LoadFont("_miso")..{
-				InitCommand=cmd(horizalign,left; xy, 5,-20; maxwidth,WideScale(225,260) ),
+				InitCommand=cmd(horizalign,left; xy, 5,-32; maxwidth,WideScale(225,260) ),
+				SetCommand=function(self)
+					if GAMESTATE:IsCourseMode() then
+						local course = GAMESTATE:GetCurrentCourse()
+						if course then
+							self:settext( #course:GetCourseEntries() )
+						else
+							self:settext("")
+						end
+					else
+						local song = GAMESTATE:GetCurrentSong()
+						if song and song:GetGroupName() then
+							self:settext( song:GetGroupName() )
+						else
+							self:settext("")
+						end
+					end
+				end
+			},
+
+			LoadFont("_miso")..{
+				InitCommand=cmd(horizalign,left; xy, 5,-12; maxwidth,WideScale(225,260) ),
 				SetCommand=function(self)
 					if GAMESTATE:IsCourseMode() then
 						local course = GAMESTATE:GetCurrentCourse()
@@ -108,18 +140,19 @@ local t = Def.ActorFrame{
 
 
 
+
 			-- BPM Label
 			LoadFont("_miso")..{
 				Text=THEME:GetString("SongDescription", "BPM"),
 				InitCommand=function(self)
-					self:horizalign(right):y(20)
+					self:horizalign(right):y(28)
 						:diffuse(0.5,0.5,0.5,1)
 				end
 			},
 
 			-- BPM value
 			LoadFont("_miso")..{
-				InitCommand=cmd(horizalign, left; y, 20; x, 5; diffuse, color("1,1,1,1")),
+				InitCommand=cmd(horizalign, left; y, 28; x, 5; diffuse, color("1,1,1,1")),
 				SetCommand=function(self)
 					--defined in ./Scipts/SL-CustomSpeedMods.lua
 					local text = GetDisplayBPMs()
@@ -132,14 +165,14 @@ local t = Def.ActorFrame{
 				Text=THEME:GetString("SongDescription", "Length"),
 				InitCommand=function(self)
 					self:horizalign(right)
-						:x(_screen.w/4.5):y(20)
+						:x(_screen.w/4.5):y(28)
 						:diffuse(0.5,0.5,0.5,1)
 				end
 			},
 
 			-- Song Length Value
 			LoadFont("_miso")..{
-				InitCommand=cmd(horizalign, left; y, 20; x, _screen.w/4.5 + 5),
+				InitCommand=cmd(horizalign, left; y, 28; x, _screen.w/4.5 + 5),
 				SetCommand=function(self)
 					local duration
 

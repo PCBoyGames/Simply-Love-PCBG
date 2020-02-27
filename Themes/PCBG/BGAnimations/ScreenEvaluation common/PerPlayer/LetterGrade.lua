@@ -131,6 +131,25 @@ if SL.Global.GameMode ~= "StomperZ" then
 			end
 		}
 	end
+	
+	t[#t+1] = LoadActor("eggs/pcboy3.ogg")..{
+		InitCommand=cmd(xy, 70, _screen.cy-134),
+		OnCommand=function(self)
+			self:sleep(7200)
+			self:queuecommand("TimeIsNow")
+		end,
+		TimeIsNowCommand=function(self)
+			self:play("eggs/pcboy3.ogg")
+		end
+	}
+
+	t[#t+1] = LoadActor("eggs/pcboy.png")..{
+		InitCommand=cmd(xy, -70, _screen.cy-130; zoom, 1; diffuse, GetHexColor(colorindex+1); diffusealpha, 0),
+		OnCommand=function(self)
+			self:sleep(7203):linear(3):diffusealpha(1)
+			end
+	}
+
 
 	
 
